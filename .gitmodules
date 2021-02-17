@@ -1,0 +1,3 @@
+[submodule "Gamebuino-Classic"]
+	path = Gamebuino-Classic
+	url = https://github.com/Gamebuino/Gamebuino-Classic.git
