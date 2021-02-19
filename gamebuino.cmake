@@ -46,7 +46,7 @@ set(CMAKE_CXX_LINK_EXECUTABLE
     "${bin_prefix}g++ ${ld_flags} <OBJECTS> -o <TARGET>.elf <LINK_LIBRARIES>; \
      ${CMAKE_OBJCOPY} -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 \
                      <TARGET>.elf <TARGET>.eep; \
-     ${CMAKE_OBJCOPY} -O ihex -R .eeprom <TARGET>.elf <TARGET>.hex; \
+     ${CMAKE_OBJCOPY} -O ihex -R .eeprom <TARGET>.elf <TARGET>.HEX; \
      ${CMAKE_SIZE} <TARGET>.elf")
 
 #-------------------------------------------------------------------------------
