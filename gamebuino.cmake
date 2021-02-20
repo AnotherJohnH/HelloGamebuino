@@ -1,22 +1,14 @@
 #-------------------------------------------------------------------------------
-# Check for ARDUINO_ROOT
-
-if(NOT DEFINED ENV{ARDUINO_ROOT})
-   message(FATAL_ERROR "Envionment variable ARDUINO_ROOT must be defined and point to the 'hardware' directory.")
-endif()
-
-set(ARDUINO_ROOT $ENV{ARDUINO_ROOT})
-
-#-------------------------------------------------------------------------------
 # Configure compilation and linking
 
 set(CMAKE_SYSTEM_NAME Generic)
 
-include_directories("${ARDUINO_ROOT}/arduino/avr/cores/arduino")
-include_directories("${ARDUINO_ROOT}/arduino/avr/variants/standard")
-include_directories("${ARDUINO_ROOT}/arduino/avr/libraries/SPI/src")
+include_directories("ArduinoCore-avr/cores/arduino")
+include_directories("ArduinoCore-avr/variants/standard")
+include_directories("ArduinoCore-avr/libraries/SPI/src")
 include_directories("Gamebuino-Classic/")
 include_directories("Gamebuino-Classic/utility")
+
 
 set(CMAKE_BUILD_TYPE Release)
 
@@ -34,7 +26,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-g -Os -w -std=gnu++11 \
                              -DF_CPU=16000000L -DARDUINO=10813 \
                              -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR")
 
-set(bin_prefix              "${ARDUINO_ROOT}/tools/avr/bin/avr-")
+set(bin_prefix "avr-")
 
 set(CMAKE_ASM_COMPILER      ${bin_prefix}as)
 set(CMAKE_C_COMPILER        ${bin_prefix}gcc)
@@ -60,34 +52,34 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 #-------------------------------------------------------------------------------
 
 set(src_arduino_core
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/main.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/CDC.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/HardwareSerial.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/HardwareSerial0.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/HardwareSerial1.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/HardwareSerial2.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/HardwareSerial3.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/IPAddress.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/PluggableUSB.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/Print.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/Stream.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/Tone.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/USBCore.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/WInterrupts.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/WMath.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/WString.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/abi.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/hooks.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/new.cpp
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring_pulse.S
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring_analog.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring_digital.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring_pulse.c
-    ${ARDUINO_ROOT}/arduino/avr/cores/arduino/wiring_shift.c)
+    ArduinoCore-avr/cores/arduino/main.cpp
+    ArduinoCore-avr/cores/arduino/CDC.cpp
+    ArduinoCore-avr/cores/arduino/HardwareSerial.cpp
+    ArduinoCore-avr/cores/arduino/HardwareSerial0.cpp
+    ArduinoCore-avr/cores/arduino/HardwareSerial1.cpp
+    ArduinoCore-avr/cores/arduino/HardwareSerial2.cpp
+    ArduinoCore-avr/cores/arduino/HardwareSerial3.cpp
+    ArduinoCore-avr/cores/arduino/IPAddress.cpp
+    ArduinoCore-avr/cores/arduino/PluggableUSB.cpp
+    ArduinoCore-avr/cores/arduino/Print.cpp
+    ArduinoCore-avr/cores/arduino/Stream.cpp
+    ArduinoCore-avr/cores/arduino/Tone.cpp
+    ArduinoCore-avr/cores/arduino/USBCore.cpp
+    ArduinoCore-avr/cores/arduino/WInterrupts.c
+    ArduinoCore-avr/cores/arduino/WMath.cpp
+    ArduinoCore-avr/cores/arduino/WString.cpp
+    ArduinoCore-avr/cores/arduino/abi.cpp
+    ArduinoCore-avr/cores/arduino/hooks.c
+    ArduinoCore-avr/cores/arduino/new.cpp
+    ArduinoCore-avr/cores/arduino/wiring.c
+    ArduinoCore-avr/cores/arduino/wiring_pulse.S
+    ArduinoCore-avr/cores/arduino/wiring_analog.c
+    ArduinoCore-avr/cores/arduino/wiring_digital.c
+    ArduinoCore-avr/cores/arduino/wiring_pulse.c
+    ArduinoCore-avr/cores/arduino/wiring_shift.c)
 
 set(src_arduino_libs
-    ${ARDUINO_ROOT}/arduino/avr/libraries/SPI/src/SPI.cpp)
+    ArduinoCore-avr/libraries/SPI/src/SPI.cpp)
 
 set(src_gamebuino
     Gamebuino-Classic/Gamebuino.cpp

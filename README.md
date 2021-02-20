@@ -1,29 +1,37 @@
 # Hello World example for Gamebuino-classic
 
-Example command line build environment for Gamebuino-classic projects.
-
-Requires an install of the Arduino IDE but allows command line building
-of projects without using the IDE on UNIX based OSes like Linux or MacOS.
+Example command line build environment for Gamebuino-classic projects
+without needing the Arduino IDE when using Linux or MacOS.
 
 ## How to build
 
-This git repo uses submodules e.g. to clone a copy use..
+### Source checkout
+
+This git repo uses submodules, so to clone a copy use...
 
 ```
 git clone --recurse-submodules https://github.com/AnotherJohnH/HelloGamebuino.git
 ```
 
-The build depends on...
+### Build Dependencies
 
-+ An install of the Arduino IDE, see [Arduino](https://www.arduino.cc/en/software) (*tested with v1.8.13*)
++ gcc-avr
++ libc-avr
 + cmake (*at least v3.11.4*)
 
-Before building the file `Makefile` must be edited to contain the
-correct path to the '/hardware' directory in the Arduino install.
-Also in the `Makefile` update the expected path for the SD card when
-mounted.
+### Build configuration
 
-To build `HELLO.HEX` from `hello.cpp` ...
+1) The `gcc-avr` and `libc-avr` dependencies can be satisfied by an install of
+the [Arduino](https://www.arduino.cc/en/software) IDE. If this
+approach is taken then the `ARDUINO_ROOT` path needs to be set in [Makefile](https://github.com/AnotherJohnH/HelloGamebuino/blob/main/Makefile)
+so that `$(ARDUINO_ROOT)/tools/avr/bin` can be added to `$PATH`.
+
+2) The [Makefile](https://github.com/AnotherJohnH/HelloGamebuino/blob/main/Makefile) should also be edited to contain the expected path for the SD
+card when mounted.
+
+### Build commands
+
+To build `HELLO.HEX` from `hello.cpp`...
 ```
 make
 ```
@@ -40,15 +48,13 @@ make send
 
 ## Customizing for a new project
 
-+ In `Makefile`      - change `<NAME>` in the line `EXECUTABLE = <NAME>`
-+ In `CMakeLits.txt` - change `<NAME>` and `<source>` in the line `add_executable(<NAME> <source> ${GB_SRC})`
++ In [Makefile](https://github.com/AnotherJohnH/HelloGamebuino/blob/main/Makefile) change `<NAME>` in the line `EXECUTABLE = <NAME>`
++ In [CMakeLists.txt](https://github.com/AnotherJohnH/HelloGamebuino/blob/main/CMakeLists.txt) change `<NAME>` and `<source>` in the line `add_executable(<NAME> <source> ${GB_SRC})`
 
 **NOTE**: In an attempt to make C/C++ easier to use the Arduino IDE supports `.ino` files. These are
 similar to normal C/C++ files but are pre-processed to auto-generate the declarations that would normally
-be necessary when splitting a project across multiple source files.
-
-`.ino` files are not supported by this build framework so `.cpp`, `.c` and `.h` files must be used and will
-be treated in the normal way.
+be necessary when splitting a project across multiple source files. `.ino` files are not supported by this
+build framework so `.cpp`, `.c` and `.h` files must be used and will be treated in the normal way.
 
 ## Further information
 

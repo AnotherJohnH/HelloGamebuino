@@ -1,14 +1,20 @@
 #---------------------------------------------------------------------
-# Edit paths below for your system
-
-export ARDUINO_ROOT = /Applications/Arduino.app/Contents/Java/hardware
-SD_CARD             = /Volumes/MAKERBUINO
 
 # Value of EXECUTABLE should match executable name used in CMakeLists.txt
 EXECUTABLE = HELLO
-BUILD_DIR  = build
+
+# XXX Edit path below for your system
+SD_CARD    = /Volumes/MAKERBUINO
+
+# If avr-gcc is already on $PATH then the following will not be
+# necessary. If not then edit the path below for your system
+# and uncomment the two lines
+# ARDUINO_ROOT = /Applications/Arduino.app/Contents/Java/hardware
+# export PATH := $(PATH):$(ARDUINO_ROOT)/tools/avr/bin
 
 #---------------------------------------------------------------------
+
+BUILD_DIR = build
 
 all:
 	mkdir -p $(BUILD_DIR)
