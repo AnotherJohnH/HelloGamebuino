@@ -54,6 +54,9 @@ set(CMAKE_CXX_LINK_EXECUTABLE
      ${CMAKE_OBJCOPY} -O ihex -R .eeprom <TARGET>.elf <TARGET>.HEX; \
      ${CMAKE_SIZE} <TARGET>.elf")
 
+# Prevent compiler sanity check when cross-compiling.
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
 #-------------------------------------------------------------------------------
 
 set(src_arduino_core
