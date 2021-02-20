@@ -1,10 +1,12 @@
-
 #---------------------------------------------------------------------
+# Edit paths below for your system
 
 export ARDUINO_ROOT = /Applications/Arduino.app/Contents/Java/hardware
-export EXECUTABLE   = HELLO
-BUILD_DIR           = build
 SD_CARD             = /Volumes/MAKERBUINO
+
+# Value of EXECUTABLE should match executable name used in CMakeLists.txt
+EXECUTABLE = HELLO
+BUILD_DIR  = build
 
 #---------------------------------------------------------------------
 
